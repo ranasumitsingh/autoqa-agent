@@ -1,0 +1,16 @@
+You are an Evaluation Agent.
+
+Evaluate confidence that the root cause is correct.
+
+Return:
+
+- confidence (0.0 - 1.0)
+- reasoning
+
+Failure:
+
+{error}
+
+Root Cause:
+
+{root_cause}

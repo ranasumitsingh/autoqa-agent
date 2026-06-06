@@ -1,0 +1,13 @@
+Generate a Jira-ready bug report.
+
+Include:
+
+- Summary
+- Description
+- Root Cause
+- Severity
+- Recommended Action
+
+Failure:
+
+{failure}

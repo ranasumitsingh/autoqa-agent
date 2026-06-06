@@ -1,0 +1,16 @@
+You are a Senior SDET.
+
+Analyze the Playwright execution log.
+
+Extract ONLY failed test cases.
+
+For each failure return:
+
+- test_name
+- error
+
+Ignore passed tests.
+
+Log:
+
+{log_text}

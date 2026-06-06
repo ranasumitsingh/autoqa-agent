@@ -1,0 +1,151 @@
+=====================================================
+PLAYWRIGHT TEST EXECUTION REPORT
+=====================================================
+
+Execution Date: 2026-06-06 14:25:33 UTC
+Environment: QA
+Browser: Chromium
+Build Number: build-1042
+Pipeline: Jenkins
+Commit: a7f3d91
+
+=====================================================
+TEST CASE: test_user_login
+=====================================================
+
+[INFO] Launching browser...
+[INFO] Navigating to https://qa-demo-app.company.com/login
+
+[INFO] Entering username: testuser
+[INFO] Entering password: ********
+[INFO] Clicking Login button
+
+[ERROR] TimeoutError:
+Page.click: Timeout 30000ms exceeded.
+
+Call log:
+  - waiting for locator("button[type='submit']")
+  - locator resolved to hidden element
+  - attempting click action
+  - waiting for element to become visible, enabled and stable
+
+Traceback:
+-----------------------------------------------------
+File "/tests/login/test_login.py", line 48, in test_user_login
+    page.locator("button[type='submit']").click()
+
+File "/venv/lib/python3.11/site-packages/playwright/sync_api.py", line 15234
+    self._sync(...)
+playwright._impl._errors.TimeoutError:
+Page.click: Timeout 30000ms exceeded
+-----------------------------------------------------
+
+Screenshot:
+artifacts/screenshots/test_user_login_failure.png
+
+Status: FAILED
+
+=====================================================
+TEST CASE: test_create_order
+=====================================================
+
+[INFO] Login successful
+[INFO] Navigating to Orders page
+[INFO] Clicking Create Order
+
+[ERROR] AssertionError
+
+Expected:
+Order Created Successfully
+
+Actual:
+Internal Server Error
+
+Traceback:
+-----------------------------------------------------
+File "/tests/orders/test_orders.py", line 77, in test_create_order
+
+assert success_message == "Order Created Successfully"
+
+AssertionError:
+Expected 'Order Created Successfully'
+Actual   'Internal Server Error'
+-----------------------------------------------------
+
+API Response:
+{
+  "status": 500,
+  "message": "Database connection timeout"
+}
+
+Status: FAILED
+
+=====================================================
+TEST CASE: test_search_products
+=====================================================
+
+[INFO] Navigating to Product Catalog
+
+[WARNING]
+Response time exceeded SLA
+
+Expected:
+< 2 seconds
+
+Actual:
+4.8 seconds
+
+Performance Metrics:
+Page Load Time: 4.8s
+API Response Time: 3.7s
+
+Status: PASSED_WITH_WARNING
+
+=====================================================
+TEST CASE: test_checkout
+=====================================================
+
+[INFO] Login successful
+[INFO] Adding item to cart
+
+[ERROR] Network Error
+
+Request:
+POST /api/cart/add
+
+Response:
+503 Service Unavailable
+
+Body:
+{
+   "error": "Upstream inventory service unavailable"
+}
+
+Traceback:
+-----------------------------------------------------
+File "/tests/cart/test_checkout.py", line 122
+    response = page.request.post(...)
+-----------------------------------------------------
+
+Status: FAILED
+
+=====================================================
+PIPELINE SUMMARY
+=====================================================
+
+Total Tests: 4
+Passed: 0
+Failed: 3
+Warnings: 1
+
+Failure Categories:
+----------------------------
+UI Timeout                : 1
+Assertion Failure         : 1
+Backend Service Failure   : 1
+Performance Warning       : 1
+
+Pipeline Status: FAILED
+
+Execution Duration: 8m 42s
+=====================================================
